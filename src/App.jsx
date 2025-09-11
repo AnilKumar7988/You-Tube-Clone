@@ -3,6 +3,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Sidenavbar from "./components/Sidenavbar";
 import Signin from "./components/Signin";
+import HomePage from "./components/HomePage";
 
 
 
@@ -22,7 +23,7 @@ function App() {
     <>
       <Navbar toggleSideNavbar = {toggleSideNavbar} />
     {sideNavbar ? <Sidenavbar /> : null}
-      
+      <HomePage />
       <Signin />
     </>
   );
