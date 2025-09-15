@@ -1,61 +1,122 @@
-import React from "react";
-import { PiGoogleLogoFill } from "react-icons/pi";
-import { FaLinkedin } from "react-icons/fa";
-import { FaFacebook } from "react-icons/fa";
+import React, { useState } from "react";
 
-function Signin() {
+function Signin({ show, onClose, setUser }) {
+  const [isRegister, setIsRegister] = useState(true); // Register is default
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  if (!show) return null;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const url = isRegister
+        ? "http://localhost:5000/api/auth/register"
+        : "http://localhost:5000/api/auth/login";
+
+      const body = isRegister ? { username, email, password } : { email, password };
+
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+
+      const data = await res.json();
+      console.log("Login response",data);
+
+  //    
+  
+      if (res.ok) {
+  const { user, token } = data;
+  localStorage.setItem("user", JSON.stringify(user));
+  localStorage.setItem("token", token); // save token
+
+  if (setUser && user.username) {
+    setUser(user.username[0].toUpperCase());
+  }
+  onClose();
+}else {
+        alert(data.error || "Something went wrong");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Network error");
+    }
+  };
+
   return (
-    <>
-      <div className="flex justify-center m-5 p-5">
-        <div className="w-[40%] border p-2">
-          <center>
-            <h1 className="text-3xl font-bold">Welcome Back !</h1>
-            <p className="text-xl w-[80%]">
-              To keep connected with us please login with your personal info
-            </p>
-            <button className="border rounded-full p-3 px-5 bg-blue-500 text-white m-2 ">
-              SIGN IN
-            </button>
-          </center>
-        </div>
-        <div className="border p-2 w-[40%]">
-          <center>
-            <form action="">
-              <h1 className="text-2xl">Create Account</h1>
-              <div className="flex justify-center items-center">
-                <PiGoogleLogoFill className="text-3xl m-2" />
-                <FaFacebook className="text-2xl m-2" />
-                <FaLinkedin className="text-2xl m-2" />
-              </div>
+    <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50">
+      <div className="rounded-3xl p-6 w-[90%] max-w-md bg-sky-100">
+        <button onClick={onClose} className="text-red-500 float-right text-lg font-bold">X</button>
+
+        {isRegister ? (
+          <div className="text-center">
+            <h1 className="text-2xl font-semibold mb-3">Create Account</h1>
+            <form onSubmit={handleSubmit}>
               <input
                 type="text"
                 placeholder="Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 required
-                className="border-b w-[50%] m-2 outline-none"
+                className="border-b w-[80%] m-2 outline-none"
               />
-              <br />
               <input
                 type="email"
                 placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
-                className="border-b w-[50%] m-2 outline-none"
+                className="border-b w-[80%] m-2 outline-none"
               />
-              <br />
               <input
                 type="password"
                 placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
-                className="border-b w-[50%] m-2 outline-none"
+                className="border-b w-[80%] m-2 outline-none"
               />
-              <br />
-              <button className="border rounded-full p-3 px-5 bg-blue-500 text-white m-2">
-                SIGN UP
-              </button>
+              <button className="border rounded-full p-2 px-5 bg-blue-500 text-white mt-3">Register</button>
             </form>
-          </center>
-        </div>
+            <p className="mt-3">
+              Already have an account?{" "}
+              <button onClick={() => setIsRegister(false)} className="text-blue-600 underline">Sign In</button>
+            </p>
+          </div>
+        ) : (
+          <div className="text-center">
+            <h1 className="text-2xl font-semibold mb-3">Sign In</h1>
+            <form onSubmit={handleSubmit}>
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="border-b w-[80%] m-2 outline-none"
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="border-b w-[80%] m-2 outline-none"
+              />
+              <button className="border rounded-full p-2 px-5 bg-blue-500 text-white mt-3">Sign In</button>
+            </form>
+            <p className="mt-3">
+              Don’t have an account?{" "}
+              <button onClick={() => setIsRegister(true)} className="text-blue-600 underline">Register</button>
+            </p>
+          </div>
+        )}
       </div>
-    </>
+    </div>
   );
 }
 

@@ -4,13 +4,15 @@ import Navbar from "./components/Navbar";
 import Sidenavbar from "./components/Sidenavbar";
 import Signin from "./components/Signin";
 import HomePage from "./components/HomePage";
-
-
+import { BrowserRouter, Router, Routes, Route } from "react-router-dom";
+import VideoPlayerPage from "./components/VideoPlayerPage";
 
 
 
 function App() {
   const [sideNavbar, setSideNavbar] = useState(false);
+  const [searchItem, setSearchItem] = useState("");
+  const [showSignIn, setShowSignIn] = useState(false);
 
   function toggleSideNavbar(){
     if(sideNavbar){
@@ -19,12 +21,42 @@ function App() {
       setSideNavbar(true);
     }
   }
+
+  function toggleSignIn(){
+    if(showSignIn){
+      setShowSignIn(false);
+    }else{
+      setShowSignIn(true);
+    }
+  }
   return (
     <>
-      <Navbar toggleSideNavbar = {toggleSideNavbar} />
-    {sideNavbar ? <Sidenavbar /> : null}
-      <HomePage />
-      <Signin />
+      
+      <Navbar
+        toggleSideNavbar={toggleSideNavbar}
+        toggleSignIn={toggleSignIn}
+        setSearchItem={setSearchItem}
+      />
+      {sideNavbar ? <Sidenavbar /> : null}
+
+      <Routes>
+        {/* Home route */}
+        <Route
+          path="/"
+          element={
+            showSignIn ? (
+              <Signin />
+            ) : (
+              <HomePage searchItem={searchItem} />
+            )
+          }
+        />
+
+        {/* Video Player route */}
+        <Route path="/video/:id" element={<VideoPlayerPage />} />
+      </Routes>
+   
+     
     </>
   );
 }

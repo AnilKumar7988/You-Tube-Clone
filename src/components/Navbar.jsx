@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { AiOutlinePlus } from "react-icons/ai";
 import { MdOutlineNotificationsNone } from "react-icons/md";
-import YtLogo from "../../public/YtLogo.png";
+import YtLogo from "/YtLogo.png";
+import Signin from "./Signin";
 
-const Navbar = ({toggleSideNavbar}) => {
+const Navbar = ({toggleSideNavbar,setSearchItem,toggleSignIn}) => {
+const [inputValue,setInputValue] = useState("");
+const [showSignin,ssetShowSignin] = useState(false);
+
+
+const handleSearchClick = ()=>{
+  setSearchItem(inputValue.trim().toLowerCase());
+};
+
+
   return (
     <>
-      <div className="flex justify-between items-center px-6 ">
+      <div className="flex justify-between items-center px-6 fixed top-0 w-full z-50 bg-white shadow-sm">
         <div className="flex items-center gap-6 w-[25%]  ">
           <AiOutlineMenu className="text-xl cursor-pointer" onClick={toggleSideNavbar} />
           <img src={YtLogo} alt="You Tube" className="w-28" />
@@ -18,9 +28,11 @@ const Navbar = ({toggleSideNavbar}) => {
           <input
             type="text"
             placeholder="Search"
+            value = {inputValue}
+            onChange={(event)=>setInputValue(event.target.value.toLowerCase())}
             className="flex-1 px-4 h-10 border border-gray-300 border-r-0 rounded-l-full outline-none"
           />
-          <button className="w-16 h-10 flex items-center justify-center border border-gray-300 border-l-0 rounded-r-full bg-gray-100  hover:bg-gray-200 ">
+          <button className="w-16 h-10 flex items-center justify-center border border-gray-300 border-l-0 rounded-r-full bg-gray-100  hover:bg-gray-200 " onClick={handleSearchClick}>
             <FaMagnifyingGlass />
           </button>
         </div>
@@ -36,10 +48,11 @@ const Navbar = ({toggleSideNavbar}) => {
           </div>
           <div className="flex">
             <MdOutlineAccountCircle className="text-3xl" />
-            <p className="text-xl text-blue-500 hover:text-blue-800">Sign in</p>
+            <p className="text-xl text-blue-500 hover:text-blue-800 cursor-pointer" onClick={()=>toggleSignIn && ssetShowSignin(true)}>Sign in</p>
           </div>
         </div>
       </div>
+      <Signin show={showSignin} onClose={()=> ssetShowSignin(false)} />
     </>
   );
 };

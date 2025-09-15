@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { AiOutlineHome } from "react-icons/ai";
 import { SiYoutubeshorts } from "react-icons/si";
 import { MdOutlineSubscriptions } from "react-icons/md";
@@ -27,12 +28,12 @@ import { MdOutlineFeedback } from "react-icons/md";
 function Sidenavbar() {
   return (
     <>
-      <div className="bg-gray-100 w-[20%] p-5 rounded-4xl h-screen overflow-y-auto ">
+      <div className="bg-gray-100 w-[20%] p-5 rounded-4xl h-screen overflow-y-auto fixed top-21 z-40 shadow-xl">
         <div>
           <ul>
-            <li className="flex items-center gap-2 m-1">
+            <li className="flex items-center gap-2 m-1 hover:bg-gray-300 rounded-xl">
               <AiOutlineHome className="text-2xl" />
-              <p className="text-lg">Home</p>
+              <Link to="/" className="text-lg ">Home</Link>
             </li>
             <li className="flex items-center gap-2 m-1">
               <SiYoutubeshorts className="text-2xl" />

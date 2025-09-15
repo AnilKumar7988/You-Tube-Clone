@@ -1,4 +1,4 @@
-const dummyData = [
+const backendDummyData = [
   {
     id: "1",
     title:
@@ -346,4 +346,4 @@ const dummyData = [
   },
 ];
 
-export default dummyData;
+export default backendDummyData;
