@@ -1,7 +1,5 @@
-// backend/controllers/videoController.js
 import Video from "../models/Video.js";
-
-/* ------------------ Basic video endpoints (existing) ------------------ */
+import User from "../models/UserSchema.js";
 
 export const getVideos = async (req, res) => {
   try {
@@ -54,8 +52,6 @@ export const deleteVideo = async (req, res) => {
   }
 };
 
-/* ------------------ Comment endpoints ------------------ */
-
 // Add a comment (authenticated)
 export const addComment = async (req, res) => {
   try {
@@ -65,7 +61,7 @@ export const addComment = async (req, res) => {
     if (!video) return res.status(404).json({ error: "Video not found" });
 
     const newComment = {
-      userId: req.user._id.toString(),   // from protect middleware
+      userId: req.user._id.toString(),   
       username: req.user.username || "Anonymous",
       comment,
       timestamp: new Date().toLocaleString(),
@@ -123,10 +119,7 @@ export const deleteComment = async (req, res) => {
   }
 };
 
-
-/* ------------------ Like / Dislike (toggle logic) ------------------ */
-
-// Toggle like: if already liked -> remove like; otherwise add like and remove any existing dislike
+// Toggle like
 export const toggleLike = async (req, res) => {
   try {
     const { id } = req.params;
@@ -157,7 +150,7 @@ export const toggleLike = async (req, res) => {
   }
 };
 
-// Toggle dislike: analogous to like
+// Toggle dislike
 export const toggleDislike = async (req, res) => {
   try {
     const { id } = req.params;

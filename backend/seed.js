@@ -8,8 +8,10 @@ connectDB();
 const importData = async () => {
   await Video.deleteMany(); // clear old
   await Video.insertMany(backendDummyData);
-  console.log("✅ Dummy Data Imported");
+  console.log("Dummy Data Imported");
   mongoose.connection.close();
 };
 
 importData(); 
+
+

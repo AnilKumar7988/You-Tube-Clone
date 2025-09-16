@@ -44,8 +44,8 @@ const backendDummyData = [
       "https://i.pinimg.com/736x/c7/b5/84/c7b5843d471a0221fe2f7b0b106a813d.jpg",
     uploadTime: "6 months ago",
     views: "391M",
-    likes: "14M",
-    dislikes: "2K",
+    likes: 1400000,
+    dislikes: 2000,
     author: "Karan Aujla",
     videoUrl: "https://www.youtube.com/embed/cWMxCE2HTag?si=hzI7FL-2r2YObmJN",
     subscriber: "4.42M Subscribers",
@@ -139,8 +139,8 @@ const backendDummyData = [
     videoUrl: "https://www.youtube.com/embed/c5z3adB7yqc?si=wON4FcwceFIHXnc7",
     subscriber: "110M Subscribers",
     category: "Wrestling",
-    likes: "35K",
-    dislikes: "0",
+    likes: 35000,
+    dislikes: 0,
     comments: [
       {
         userId: "@ManabBora-l5w",
@@ -172,8 +172,8 @@ const backendDummyData = [
     videoUrl: "https://www.youtube.com/embed/Aqb4XQ-_BfM?si=t-PGgCmB2X_ZHPNo",
     subscriber: "110M Subscribers",
     category: "Sports",
-    likes: "19K",
-    dislikes: "3",
+    likes: 19000,
+    dislikes: 3,
   },
   {
     id: "13",
@@ -187,8 +187,8 @@ const backendDummyData = [
     videoUrl: "https://www.youtube.com/embed/qJ3hDOVmh9E?si=1rHYcnQUGakrVBqH",
     subscriber: "73.5M Subscribers",
     category: "News",
-    likes: "511",
-    dislikes: "0",
+    likes: 511,
+    dislikes: 0,
   },
   {
     id: "14",
@@ -202,8 +202,8 @@ const backendDummyData = [
     videoUrl: "https://www.youtube.com/embed/Xspo0jE3Q6o?si=vqfOheZR9MihtOCM",
     subscriber: "222K Subscribers",
     category: "Horror",
-    likes: "174",
-    dislikes: "4",
+    likes: 174,
+    dislikes: 4,
     comments: [
       {
         userId: "@AnujKumar-oy1qg",
@@ -234,8 +234,8 @@ const backendDummyData = [
     videoUrl: "https://www.youtube.com/embed/eM8Mjuq4MwQ?si=cYzKs8mxbSVTF2Ly",
     subscriber: "69M Subscribers",
     category: "Music",
-    likes: "2.7M",
-    dislikes: "0",
+    likes: 207000,
+    dislikes: 0,
     comments: [
       {
         userId: "@yrf",
@@ -278,8 +278,8 @@ const backendDummyData = [
     videoUrl: "https://www.youtube.com/embed/fFp5bRp-Has?si=fDbdt4hPezcJRnwt",
     subscriber: "2.84M Subscribers",
     category: "Movie",
-    likes: "929",
-    dislikes: "47",
+    likes: 929,
+    dislikes: 47,
     comments: [
       {
         userId: "@navjotwahla_13",
@@ -317,18 +317,18 @@ const backendDummyData = [
     videoUrl: "https://www.youtube.com/embed/uyPvenCAigg?si=uEINeKQjbYDcrwzh",
     subscriber: "9.15M Subscribers",
     category: "Sports",
-    likes: "22K",
-    dislikes: "0",
+    likes: 22,
+    dislikes: 0,
     comments: [
       {
         userId: "@sameerjadhav1467",
-        comment: "Pune crowd 🔥 what an energy 💥💯 ... Brilliant performance by team 👌",
+        comment:
+          "Pune crowd 🔥 what an energy 💥💯 ... Brilliant performance by team 👌",
         timestamp: "1 year ago",
       },
       {
         userId: "@SUNIL.0n.Search",
-        comment:
-          "puneri paltan on beast mode ❤",
+        comment: "puneri paltan on beast mode ❤",
         timestamp: "1 year ago",
       },
       {
@@ -344,6 +344,7 @@ const backendDummyData = [
       },
     ],
   },
+   
 ];
 
 export default backendDummyData;

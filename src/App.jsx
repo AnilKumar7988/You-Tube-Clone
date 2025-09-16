@@ -6,8 +6,8 @@ import Signin from "./components/Signin";
 import HomePage from "./components/HomePage";
 import { BrowserRouter, Router, Routes, Route } from "react-router-dom";
 import VideoPlayerPage from "./components/VideoPlayerPage";
-
-
+import ChannelDetailsPage from "./components/ChannelDetailsPage";
+import ChannelPage from "./components/ChannelPage";
 
 function App() {
   const [sideNavbar, setSideNavbar] = useState(false);
@@ -39,6 +39,7 @@ function App() {
       />
       {sideNavbar ? <Sidenavbar /> : null}
 
+
       <Routes>
         {/* Home route */}
         <Route
@@ -54,6 +55,8 @@ function App() {
 
         {/* Video Player route */}
         <Route path="/video/:id" element={<VideoPlayerPage />} />
+        <Route path="/channel" element={<ChannelPage />} />
+          <Route path="/channel-details" element={<ChannelDetailsPage />} />
       </Routes>
    
      

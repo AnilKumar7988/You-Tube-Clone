@@ -30,10 +30,6 @@ app.get("/api/videos/:id", async (req, res) => {
 
 app.use("/api/videos", videoRoutes);
 
-// mongoose.connect("mongodb://127.0.0.1:27017/UsersDetails")
-// .then(() => console.log("MongoDB connected"))
-// .catch((err) => console.log(err));
-
 app.use("/api/auth", authRoutes)
 
 connectDB();
